@@ -75,7 +75,7 @@ export default function SignUpPage() {
 
         <CardFooter className="flex flex-col space-y-4">
           <Button onClick={onSignup} className="w-full">
-            <Mail className="mr-2 h-4 w-4" /> Sign Up with Email
+            <Mail className="mr-2 h-4 w-4" /> Sign Up
           </Button>
           <div className="text-center text-sm">
             Already have an account?{" "}

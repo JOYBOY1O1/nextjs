@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail } from "lucide-react"
+import { Mail, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,10 +15,15 @@ export default function LoginPage() {
     email: "",
     password: "",
   })
+  const [showPassword, setShowPassword] = useState(false)
 
   const onLogin = async () => {
     // Implement your login logic here
     console.log("Logging in:", user)
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -41,13 +46,28 @@ export default function LoginPage() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              value={user.password}
-              onChange={(e) => setUser({...user, password: e.target.value})}
-            />
+            <div className="relative">
+              <Input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter your password"
+                value={user.password}
+                onChange={(e) => setUser({...user, password: e.target.value})}
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <EyeOff className="h-4 w-4 text-gray-500" />
+                ) : (
+                  <Eye className="h-4 w-4 text-gray-500" />
+                )}
+              </Button>
+            </div>
           </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
